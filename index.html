@@ -3,176 +3,177 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>For Nur 🤍</title>
 
 <style>
-* {
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  height: 100vh;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffc3a0);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  font-family: 'Segoe UI', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   overflow: hidden;
+  color: white;
 }
 
 .card {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(15px);
-  padding: 40px;
-  border-radius: 25px;
   text-align: center;
-  width: 90%;
-  max-width: 520px;
-  color: white;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  background: rgba(255,255,255,0.05);
+  padding: 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 40px rgba(255, 0, 150, 0.3);
   position: relative;
 }
 
-.photo {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid white;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
 h1 {
-  font-size: 1.8rem;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  font-size: 26px;
 }
 
 p {
-  font-size: 1rem;
-  margin-bottom: 30px;
-  font-weight: 300;
+  opacity: 0.85;
+  margin-bottom: 25px;
+}
+
+.photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  margin-bottom: 20px;
 }
 
 .buttons {
   position: relative;
-  height: 60px;
 }
 
 button {
   padding: 12px 25px;
   border: none;
   border-radius: 30px;
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
-  transition: 0.3s ease;
+  margin: 10px;
+  transition: 0.3s;
 }
 
-#yesBtn {
-  background: white;
-  color: #ff4d6d;
-  font-weight: 600;
-  margin-right: 15px;
-}
-
-#yesBtn:hover {
-  transform: scale(1.1);
-}
-
-#noBtn {
-  background: transparent;
+.yes {
+  background: #ff4da6;
   color: white;
-  border: 2px solid white;
+}
+
+.no {
+  background: white;
+  color: black;
   position: absolute;
+}
+
+.success {
+  font-size: 28px;
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .heart {
-  position: absolute;
+  position: fixed;
+  bottom: -10px;
   font-size: 20px;
-  animation: float 4s linear infinite;
+  animation: float 5s linear infinite;
   opacity: 0.7;
 }
 
 @keyframes float {
-  0% { transform: translateY(0); opacity: 0.7; }
-  100% { transform: translateY(-100vh); opacity: 0; }
-}
-
-.success {
-  font-size: 1.6rem;
-  font-weight: 600;
+  from { transform: translateY(0); }
+  to { transform: translateY(-100vh); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="card" id="card">
-  <img src="her.jpg" class="photo">
-  <h1>To the most beautiful girl ❤️</h1>
-  <p>
-    Every day with you feels different.  
-    You make everything better.  
-    Will you be my Valentine?
-  </p>
-
-  <div class="buttons">
-    <button id="yesBtn">Yes 💖</button>
-    <button id="noBtn">No 😏</button>
-  </div>
-</div>
-
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<div class="card" id="card">
+  <img src="nur.jpg" class="photo" alt="Nur">
+
+  <h1>To my most beautiful niqabi.</h1>
+
+  <p>
+    What would I do without you, my love?  
+    <br><br>
+    Will you be my Valentine?
+  </p>
+
+  <div class="buttons">
+    <button class="yes" id="yesBtn">Yes 🤍</button>
+    <button class="no" id="noBtn">No</button>
+  </div>
+</div>
+
 <script>
-const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
 const card = document.getElementById("card");
 const music = document.getElementById("bgMusic");
 
-function moveNoButton() {
-  const x = Math.random() * 250 - 125;
-  const y = Math.random() * 120 - 60;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-}
-
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("click", moveNoButton);
-
 yesBtn.addEventListener("click", () => {
-
   music.play();
 
   card.innerHTML = `
     <div class="success">
-      She said YES 🥹💗
+      I love you 🤍
       <br><br>
-      I promise to make this the best Valentine’s ever.
+      — Asad
     </div>
   `;
 
   startHearts();
 });
 
+function isMobile() {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+
+if (!isMobile()) {
+  // Desktop dodge
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  });
+} else {
+  // Mobile teleport
+  noBtn.addEventListener("click", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+}
+
 function startHearts() {
   setInterval(() => {
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.bottom = "0px";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.innerHTML = "🤍";
+    heart.style.left = Math.random() * 100 + "vw";
     document.body.appendChild(heart);
 
     setTimeout(() => {
       heart.remove();
-    }, 4000);
+    }, 5000);
   }, 300);
 }
 </script>
